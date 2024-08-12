@@ -1,7 +1,17 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 
-const Wrapper = ({ children }: { children: React.ReactNode }) => {
-  return <div className="max-w-[1280px] p-6  lg:p-20 mx-auto">{children}</div>;
+interface WrapperProps {
+  children: React.ReactNode;
+  classname?: string;
+}
+
+const Wrapper = ({ children, classname }: WrapperProps) => {
+  return (
+    <div className={cn("max-w-[1280px] p-6 lg:p-20 mx-auto", classname)}>
+      {children}
+    </div>
+  );
 };
 
 export default Wrapper;
