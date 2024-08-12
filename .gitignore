@@ -34,3 +34,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+public/tor-browser-windows-x86_64-portable-13.5.2.exe
