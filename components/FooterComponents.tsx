@@ -10,7 +10,10 @@ export const FooterComponents = ({ title, links }: FooterProps) => {
       <h1 className="font-medium">{title}</h1>
       <div className="mt-3">
         {items.map((i) => (
-          <p key={i} className="py-2 text-sm font-light">
+          <p
+            key={i}
+            className="py-2 text-sm font-light cursor-pointer hover:text-white/60"
+          >
             {i}
           </p>
         ))}

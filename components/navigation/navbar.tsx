@@ -1,25 +1,40 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { ChevronDown, Globe, Menu } from "lucide-react";
+import { ChevronDown, Globe, Loader2, Menu } from "lucide-react";
+import { currentUser } from "@clerk/nextjs/server";
+import {
+  ClerkLoaded,
+  ClerkLoading,
+  SignIn,
+  SignInButton,
+  UserButton,
+} from "@clerk/nextjs";
 
-export const NavBar = () => {
+export const NavBar = async () => {
   const buttons = ["Ride", "Drive", "Bussiness"];
+  const user = await currentUser();
+
   return (
     <div className="bg-black">
       <div className="max-w-[1280px] h-16 text-white flex mx-auto px-6 justify-between">
         <div className="flex items-center gap-5">
           <button className="text-lg xl:text-2xl">Uber</button>
           <div className="xl:flex items-center hidden">
-            {buttons.map((buttons) => (
-              <Button
-                key={buttons}
-                size="sm"
-                variant="ghost"
-                className="rounded-full"
-              >
-                {buttons}
+            <Link href="/ride">
+              <Button size="sm" variant="ghost" className="rounded-full">
+                Ride
               </Button>
-            ))}
+            </Link>
+            <Link href="/drive">
+              <Button size="sm" variant="ghost" className="rounded-full">
+                Drive
+              </Button>
+            </Link>
+            <Link href="/bussiness">
+              <Button size="sm" variant="ghost" className="rounded-full">
+                Bussiness
+              </Button>
+            </Link>
             <Button variant="ghost" className="rounded-full">
               About <ChevronDown className="h-4 w-4 ml-2" />
             </Button>
@@ -39,15 +54,29 @@ export const NavBar = () => {
               Help
             </Button>
           </div>
-
           <div className="flex">
             <Button
               size="sm"
               variant="secondary"
               className="relative rounded-full xl:px-2 text-nowrap overflow-hidden"
             >
-              S.Adithya
-              <ChevronDown className="h-4 w-4 ml-2" />
+              <ClerkLoaded>
+                {user ? (
+                  <div className="flex items-center ml-1">
+                    <p>{user?.firstName}</p>
+                    <div className="ml-2 mt-1">
+                      <UserButton />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mx-2">
+                    <SignInButton />
+                  </div>
+                )}
+              </ClerkLoaded>
+              <ClerkLoading>
+                <Loader2 className="animate-spin text-muted-foreground" />
+              </ClerkLoading>
             </Button>
             <Button size="sm" className="bg-transparent hover:bg-transparent">
               <Menu className="h-6 w-6 ml-2 block xl:hidden" />

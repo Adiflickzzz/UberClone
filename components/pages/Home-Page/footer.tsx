@@ -9,7 +9,7 @@ export const Footer = () => {
       <Wrapper classname=" lg:pb-6">
         <div>
           <h1 className="text-2xl">Uber</h1>
-          <h2 className="text-base underline-offset-[8px] underline lg:no-underline mt-10">
+          <h2 className="text-base underline-offset-[16px] hover:underline mt-10 cursor-pointer ">
             Visit Help Center
           </h2>
         </div>
@@ -52,12 +52,19 @@ export const Footer = () => {
           <FooterLine />
         </div>
         <div className="flex items-center  gap-2">
-          <Image src="/Playstore.svg" width={128} height={38} alt="PlayStore" />
+          <Image
+            src="/Playstore.svg"
+            width={128}
+            height={38}
+            alt="PlayStore"
+            className="cursor-pointer"
+          />
           <Image
             src="/Applestore.svg"
             width={128}
             height={36}
             alt="PlayStore"
+            className="cursor-pointer"
           />
         </div>
         <div className="py-9">
