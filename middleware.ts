@@ -4,15 +4,17 @@ import {
   createRouteMatcher,
 } from "@clerk/nextjs/server";
 
-const isProtectedRoutes = createRouteMatcher([
-  "/",
-  "/sign-in(.*)",
-  "/sign-up(.*)",
-]);
+// const isProtectedRoutes = createRouteMatcher([
+//   "/",
+//   "/sign-in(.*)",
+//   "/sign-up(.*)",
+// ]);
 
-export default clerkMiddleware((auth, req) => {
-  if (!isProtectedRoutes(req)) auth().protect();
-});
+// export default clerkMiddleware((auth, req) => {
+//   if (!isProtectedRoutes(req)) auth().protect();
+// });
+
+export default clerkMiddleware();
 
 export const config = {
   matcher: [

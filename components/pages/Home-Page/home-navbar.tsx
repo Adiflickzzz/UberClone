@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { ChevronDown, Globe, Loader2, Menu } from "lucide-react";
 import { currentUser } from "@clerk/nextjs/server";
 import {
@@ -9,10 +9,17 @@ import {
   SignInButton,
   UserButton,
 } from "@clerk/nextjs";
+import { db } from "@/lib/db";
 
-export const NavBar = async () => {
+export const HomeNavbar = async () => {
   const buttons = ["Ride", "Drive", "Bussiness"];
   const user = await currentUser();
+
+  const profile = await db.profile.findUnique({
+    where: {
+      userId: user?.id,
+    },
+  });
 
   return (
     <div className="bg-black">
@@ -20,7 +27,7 @@ export const NavBar = async () => {
         <div className="flex items-center gap-5">
           <button className="text-lg xl:text-2xl">Uber</button>
           <div className="xl:flex items-center hidden">
-            <Link href="/ride">
+            <Link href={`/ride/${profile?.id}`}>
               <Button size="sm" variant="ghost" className="rounded-full">
                 Ride
               </Button>

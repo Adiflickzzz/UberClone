@@ -3,7 +3,7 @@ import { MainCards } from "@/components/MainCards";
 import Wrapper from "@/components/Wrapper";
 import React from "react";
 
-const ContentPage = () => {
+export const HomeContentPage = () => {
   return (
     <Wrapper>
       <div>
@@ -49,5 +49,3 @@ const ContentPage = () => {
     </Wrapper>
   );
 };
-
-export default ContentPage;
